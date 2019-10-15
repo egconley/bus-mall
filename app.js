@@ -91,6 +91,7 @@ function handleClick() {
     renderProducts();
   } else {
     removeEventListener('click', handleClick);
+    containerEl.remove();
     displayScores();
   }
 }
