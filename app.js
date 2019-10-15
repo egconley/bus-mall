@@ -76,6 +76,44 @@ function displayScores() {
     liEl.textContent = `${allProducts[i].name} got ${allProducts[i].votes} votes.`;
     ulEl.appendChild(liEl);
   }
+  var ctx = document.getElementById('myChart');
+  var myChartElement = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          'rgba()',
+          'rgba()',
+          'rgba()',
+          'rgba()',
+          'rgba()',
+          'rgba()',
+        ],
+        borderColor: [
+          'rgba()',
+          'rgba()',
+          'rgba()',
+          'rgba()',
+          'rgba()',
+          'rgba()',
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: false,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      },
+    }
+  });
 }
 
 function handleClick() {
