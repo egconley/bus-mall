@@ -37,40 +37,26 @@ function uniqueArrayGenerator() {
       uniquePicsArray.push(random);
     }
   }
-  // console.log('40: ', uniquePicsArray);
+  console.log('40: ', uniquePicsArray);
 }
 
 function uniqueArrayCarousel() {
-  // console.log('44: ', uniquePicsArray);
+  console.log('44: ', uniquePicsArray);
   uniqueArrayGenerator();
-  // console.log('46: ', uniquePicsArray);
+  console.log('46: ', uniquePicsArray);
   for (var i = 0; i < uniquePicsArray.length; i++) {
-    // console.log('48: ', uniquePicsArray);
-    var temp = uniquePicsArray.shift();
-    // console.log('50: ', uniquePicsArray);
+    console.log('48: ', uniquePicsArray);
+    uniquePicsArray.shift();
+    console.log('50: ', uniquePicsArray);
   }
-  // console.log('52: ', uniquePicsArray);
+  console.log('52: ', uniquePicsArray);
   return uniquePicsArray;
 }
-// function makeUniquePicsArray() {
-//   //create an array to hold unique indexes
-//   //assign values to index 0, 1, and 2 and splice all allProducts
-//   uniquePicsArray[0] = makeRandom();
-//   uniquePicsArray[1] = makeRandom();
-//   uniquePicsArray[2] = makeRandom();
-
-//   while (uniquePicsArray[0] === uniquePicsArray[1] || uniquePicsArray[1] === uniquePicsArray[2] || uniquePicsArray[0] === uniquePicsArray[2]) {
-//     console.error('Duplicate found, Re-rolling!');
-//     uniquePicsArray[1] = makeRandom();
-//     uniquePicsArray[2] = makeRandom();
-//   }
-//   return uniquePicsArray;
-// }
 
 function renderProducts() {
-  // console.log('71: ', uniquePicsArray);
+  console.log('71: ', uniquePicsArray);
   uniqueArrayCarousel();
-  // console.log('73: ', uniquePicsArray);
+  console.log('73: ', uniquePicsArray);
   //add views here
   allProducts[uniquePicsArray[0]].views++;
   allProducts[uniquePicsArray[1]].views++;
