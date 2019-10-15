@@ -97,10 +97,10 @@ function displayScores() {
   var chartLabelArray = [];
   var chartDataArray = [];
   for (var i = 0; i < allProducts.length; i++) {
-    var ulEl = document.getElementById('tally');
-    var liEl = document.createElement('li');
-    liEl.textContent = `${allProducts[i].name} got ${allProducts[i].votes} votes.`;
-    ulEl.appendChild(liEl);
+    // var ulEl = document.getElementById('tally');
+    // var liEl = document.createElement('li');
+    // liEl.textContent = `${allProducts[i].name} got ${allProducts[i].votes} votes.`;
+    // ulEl.appendChild(liEl);
     chartLabelArray.push(allProducts[i].name);
     chartDataArray.push(allProducts[i].votes);
   }
@@ -139,6 +139,10 @@ function displayScores() {
     },
     options: {
       responsive: false,
+      title: {
+        display: true,
+        text: 'Product Votes'
+      },
       scales: {
         yAxes: [{
           ticks: {
