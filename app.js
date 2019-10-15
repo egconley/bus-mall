@@ -28,25 +28,49 @@ new Product('dog-duck');
 function makeRandom() {
   return Math.floor(Math.random() * allProducts.length);
 }
+
 var uniquePicsArray = [];
-
-function makeUniquePicsArray() {
-  //create an array to hold unique indexes
-  //assign values to index 0, 1, and 2 and splice all allProducts
-  uniquePicsArray[0] = makeRandom();
-  uniquePicsArray[1] = makeRandom();
-  uniquePicsArray[2] = makeRandom();
-
-  while (uniquePicsArray[0] === uniquePicsArray[1] || uniquePicsArray[1] === uniquePicsArray[2] || uniquePicsArray[0] === uniquePicsArray[2]) {
-    console.error('Duplicate found, Re-rolling!');
-    uniquePicsArray[1] = makeRandom();
-    uniquePicsArray[2] = makeRandom();
+function uniqueArrayGenerator() {
+  while (uniquePicsArray.length < 6) {
+    var random = makeRandom();
+    while (!uniquePicsArray.includes(random)) {
+      uniquePicsArray.push(random);
+    }
   }
-  return uniquePicsArray;
+  // console.log('40: ', uniquePicsArray);
 }
 
+function uniqueArrayCarousel() {
+  // console.log('44: ', uniquePicsArray);
+  uniqueArrayGenerator();
+  // console.log('46: ', uniquePicsArray);
+  for (var i = 0; i < uniquePicsArray.length; i++) {
+    // console.log('48: ', uniquePicsArray);
+    var temp = uniquePicsArray.shift();
+    // console.log('50: ', uniquePicsArray);
+  }
+  // console.log('52: ', uniquePicsArray);
+  return uniquePicsArray;
+}
+// function makeUniquePicsArray() {
+//   //create an array to hold unique indexes
+//   //assign values to index 0, 1, and 2 and splice all allProducts
+//   uniquePicsArray[0] = makeRandom();
+//   uniquePicsArray[1] = makeRandom();
+//   uniquePicsArray[2] = makeRandom();
+
+//   while (uniquePicsArray[0] === uniquePicsArray[1] || uniquePicsArray[1] === uniquePicsArray[2] || uniquePicsArray[0] === uniquePicsArray[2]) {
+//     console.error('Duplicate found, Re-rolling!');
+//     uniquePicsArray[1] = makeRandom();
+//     uniquePicsArray[2] = makeRandom();
+//   }
+//   return uniquePicsArray;
+// }
+
 function renderProducts() {
-  makeUniquePicsArray();
+  // console.log('71: ', uniquePicsArray);
+  uniqueArrayCarousel();
+  // console.log('73: ', uniquePicsArray);
   //add views here
   allProducts[uniquePicsArray[0]].views++;
   allProducts[uniquePicsArray[1]].views++;
@@ -81,12 +105,12 @@ function displayScores() {
     chartDataArray.push(allProducts[i].votes);
   }
   var ctx = document.getElementById('myChart');
-  var myChartElement = new Chart(ctx, {
+  new Chart(ctx, {
     type: 'bar',
     data: {
       labels: chartLabelArray,
       datasets: [{
-        label: '# of Votes',
+        label: 'vote count',
         data: chartDataArray,
         backgroundColor: [
           'rgba(0, 92, 53, 0.2)', /* bag */
@@ -130,7 +154,7 @@ function handleClick() {
   if (clicks < maxClicks) {
     var chosenImage = event.target.title;
     clicks++;
-    console.log('chosenImage: ', chosenImage);
+    // console.log('chosenImage: ', chosenImage);
     for (var i = 0; i < allProducts.length; i++) {
       if (allProducts[i].name === chosenImage) {
         allProducts[i].votes++;
