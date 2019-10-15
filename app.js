@@ -70,20 +70,24 @@ var clicks = 0;
 var maxClicks = 5;
 
 function displayScores() {
+  var chartLabelArray = [];
+  var chartDataArray = [];
   for (var i = 0; i < allProducts.length; i++) {
     var ulEl = document.getElementById('tally');
     var liEl = document.createElement('li');
     liEl.textContent = `${allProducts[i].name} got ${allProducts[i].votes} votes.`;
     ulEl.appendChild(liEl);
+    chartLabelArray.push(allProducts[i].name);
+    chartDataArray.push(allProducts[i].votes);
   }
   var ctx = document.getElementById('myChart');
   var myChartElement = new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: chartLabelArray,
       datasets: [{
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: chartDataArray,
         backgroundColor: [
           'rgba()',
           'rgba()',
