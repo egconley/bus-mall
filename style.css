@@ -1,0 +1,11 @@
+body {
+  width: 960px;
+}
+
+img {
+  width: 300px;
+}
+
+#left, #right, #center {
+  display: inline-block;
+}
