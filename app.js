@@ -17,23 +17,37 @@ var containerEl = document.getElementById('image_container');
 
 var allProducts = [];
 
-function Product(name) {
+function Product(name, views, votes) {
   this.name = name;
   this.path = `images/${name}.jpg`;
-  this.views = 0;
-  this.votes = 0;
+  this.views = views || 0; /* 0 will be default if views doesn't exit */
+  this.votes = votes || 0; /* 0 will be default if votes doesn't exit */
   allProducts.push(this);
 }
 
-new Product('bag');
-new Product('banana');
-new Product('bathroom');
-new Product('boots');
-new Product('breakfast');
-new Product('bubblegum');
-new Product('chair');
-new Product('cthulhu');
-new Product('dog-duck');
+if (localStorage.getItem('voteData') === null) {
+  new Product('bag');
+  new Product('banana');
+  new Product('bathroom');
+  new Product('boots');
+  new Product('breakfast');
+  new Product('bubblegum');
+  new Product('chair');
+  new Product('cthulhu');
+  new Product('dog-duck');
+} else {
+  //Grab data from storage
+  var storageAllProducts = localStorage.getItem('voteData');
+  console.log('line 51: ', storageAllProducts);
+  var parseAllProducts = JSON.parse(storageAllProducts);
+  console.log('line 53: ', parseAllProducts);
+
+  //Reconstruct data to Product
+  for (var i = 0; i < parseAllProducts.length; i++) {
+    new Product(parseAllProducts[i].name, parseAllProducts[i].views, parseAllProducts[i].votes);
+    console.log('line 58: ', allProducts);
+  }
+}
 
 function makeRandom() {
   return Math.floor(Math.random() * allProducts.length);
@@ -47,26 +61,26 @@ function uniqueArrayGenerator() {
       uniquePicsArray.push(random);
     }
   }
-  console.log('40: ', uniquePicsArray);
+  console.log('71: ', uniquePicsArray);
 }
 
 function uniqueArrayCarousel() {
-  console.log('44: ', uniquePicsArray);
+  console.log('75: ', uniquePicsArray);
   uniqueArrayGenerator();
-  console.log('46: ', uniquePicsArray);
+  console.log('77: ', uniquePicsArray);
   for (var i = 0; i < uniquePicsArray.length; i++) {
-    console.log('48: ', uniquePicsArray);
+    console.log('79: ', uniquePicsArray);
     uniquePicsArray.shift();
-    console.log('50: ', uniquePicsArray);
+    console.log('81: ', uniquePicsArray);
   }
-  console.log('52: ', uniquePicsArray);
+  console.log('83: ', uniquePicsArray);
   return uniquePicsArray;
 }
 
 function renderProducts() {
-  console.log('71: ', uniquePicsArray);
+  console.log('88: ', uniquePicsArray);
   uniqueArrayCarousel();
-  console.log('73: ', uniquePicsArray);
+  console.log('90: ', uniquePicsArray);
   //add views here
   allProducts[uniquePicsArray[0]].views++;
   allProducts[uniquePicsArray[1]].views++;
@@ -94,14 +108,14 @@ function displayScores() {
   var chartDataArray = [];
 
   //Grab data from storage
-  var storageAllProducts = localStorage.getItem('voteData');
-  console.log('line 98: ', storageAllProducts);
-  var parseAllProducts = JSON.parse(storageAllProducts);
-  console.log('line 100: ', parseAllProducts);
+  // var storageAllProducts = localStorage.getItem('voteData');
+  // console.log('line 98: ', storageAllProducts);
+  // var parseAllProducts = JSON.parse(storageAllProducts);
+  // console.log('line 100: ', parseAllProducts);
 
-  //Reconstruct data to Product
-  for (var i = 0; i < parseAllProducts.length; i++) {
-    new Product(parseAllProducts[i].name, parseAllProducts[i].votes);
+  for (var i = 0; i < allProducts.length; i++) {
+    //Reconstruct data to Product
+    //new Product(parseAllProducts[i].name, parseAllProducts[i].votes);
     chartLabelArray.push(allProducts[i].name);
     chartDataArray.push(allProducts[i].votes);
   }
@@ -156,6 +170,8 @@ function displayScores() {
   });
 }
 
+var allProductsStringified;
+
 function handleClick() {
   if (clicks < maxClicks) {
     var chosenImage = event.target.title;
@@ -163,10 +179,9 @@ function handleClick() {
     // console.log('chosenImage: ', chosenImage);
     for (var i = 0; i < allProducts.length; i++) {
       if (allProducts[i].name === chosenImage) {
-        //MAKE THIS INCREMENT ON TOP OF VOTES FROM LOCAL STORAGE
         allProducts[i].votes++;
         // Save data to localStorage
-        var allProductsStringified = JSON.stringify(allProducts);
+        allProductsStringified = JSON.stringify(allProducts);
         localStorage.setItem('voteData', allProductsStringified);
       }
     }
