@@ -1,5 +1,15 @@
 'use strict';
 
+// Store the products array into local storage as a formatted JSON string
+// Retrieve the products array from local storage and then utilize the JSON.Parse() function. Remember, you will have to send each item in the array back through constructor function.
+
+// if (there is local storage) {
+//   - retrieve data from local storage
+//   - assign data to where it will be used
+// } else {
+//   create instances
+// }
+
 var leftImageEl = document.getElementById('left');
 var centerImageEl = document.getElementById('center');
 var rightImageEl = document.getElementById('right');
@@ -82,11 +92,15 @@ var maxClicks = 15;
 function displayScores() {
   var chartLabelArray = [];
   var chartDataArray = [];
+  //GRAB VOTE DATA FROM LOCAL STORAGE
+  //TODO: 3. var storageAllProducts = localStorage.getItem('voteData');
+  //TODO: 4. var parseAllProducts = JSON.parse(storageAllProducts)
+  //TODO: 5. for (var i=0; i < parseAllProducts.length) {
+  //TODO:      new Product(parseAllProducts[i].name, parseAllProducts[i].votes);
+  //         }
+  }
+
   for (var i = 0; i < allProducts.length; i++) {
-    // var ulEl = document.getElementById('tally');
-    // var liEl = document.createElement('li');
-    // liEl.textContent = `${allProducts[i].name} got ${allProducts[i].votes} votes.`;
-    // ulEl.appendChild(liEl);
     chartLabelArray.push(allProducts[i].name);
     chartDataArray.push(allProducts[i].votes);
   }
@@ -148,6 +162,11 @@ function handleClick() {
     for (var i = 0; i < allProducts.length; i++) {
       if (allProducts[i].name === chosenImage) {
         allProducts[i].votes++;
+        // SAVE VOTE DATA TO LOCAL STORAGE
+        //AS AN ARRAY
+        //
+        //TODO: 1. var allProductsStringified = JSON.stringify(allProducts);
+        //TODO: 2. localStorage.setItem('voteData', allProductsStringified); 
       }
     }
     renderProducts();
