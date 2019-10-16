@@ -92,18 +92,20 @@ var maxClicks = 15;
 function displayScores() {
   var chartLabelArray = [];
   var chartDataArray = [];
-  //GRAB VOTE DATA FROM LOCAL STORAGE
-  //TODO: 3. var storageAllProducts = localStorage.getItem('voteData');
-  //TODO: 4. var parseAllProducts = JSON.parse(storageAllProducts)
-  //TODO: 5. for (var i=0; i < parseAllProducts.length) {
-  //TODO:      new Product(parseAllProducts[i].name, parseAllProducts[i].votes);
-  //         }
-  }
 
-  for (var i = 0; i < allProducts.length; i++) {
+  //Grab data from storage
+  var storageAllProducts = localStorage.getItem('voteData');
+  console.log('line 98: ', storageAllProducts);
+  var parseAllProducts = JSON.parse(storageAllProducts);
+  console.log('line 100: ', parseAllProducts);
+
+  //Reconstruct data to Product
+  for (var i = 0; i < parseAllProducts.length; i++) {
+    new Product(parseAllProducts[i].name, parseAllProducts[i].votes);
     chartLabelArray.push(allProducts[i].name);
     chartDataArray.push(allProducts[i].votes);
   }
+
   var ctx = document.getElementById('myChart');
   new Chart(ctx, {
     type: 'bar',
@@ -161,12 +163,11 @@ function handleClick() {
     // console.log('chosenImage: ', chosenImage);
     for (var i = 0; i < allProducts.length; i++) {
       if (allProducts[i].name === chosenImage) {
+        //MAKE THIS INCREMENT ON TOP OF VOTES FROM LOCAL STORAGE
         allProducts[i].votes++;
-        // SAVE VOTE DATA TO LOCAL STORAGE
-        //AS AN ARRAY
-        //
-        //TODO: 1. var allProductsStringified = JSON.stringify(allProducts);
-        //TODO: 2. localStorage.setItem('voteData', allProductsStringified); 
+        // Save data to localStorage
+        var allProductsStringified = JSON.stringify(allProducts);
+        localStorage.setItem('voteData', allProductsStringified);
       }
     }
     renderProducts();
