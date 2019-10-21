@@ -101,7 +101,7 @@ function renderProducts() {
 }
 
 var clicks = 0;
-var maxClicks = 15;
+var maxClicks = 25;
 
 function displayScores() {
   var chartLabelArray = [];
@@ -129,26 +129,26 @@ function displayScores() {
         label: 'vote count',
         data: chartDataArray,
         backgroundColor: [
-          'rgba(0, 92, 53, 0.2)', /* bag */
-          'rgba(0, 85, 92, 0.2)', /* banana */
-          'rgba(0, 63,92, 0.2)', /* bathroom */
-          'rgba(68, 78, 134, 0.2)', /* boots */
-          'rgba(149, 81, 150, 0.2)', /* breakfast */
-          'rgba(221, 81, 130, 0.2)', /* bubblegum */
-          'rgba(255, 110, 84, 0.2)', /* chair */
-          'rgba(255, 166, 0, 0.2)', /* cthulhu */
-          'rgba(255, 249, 61, 0.2)' /* dog-duck */
+          'rgba(220, 28, 19, 0.2)', /* bag */
+          'rgba(220, 28, 19, 0.2)', /* banana */
+          'rgba(220, 28, 19, 0.2)', /* bathroom */
+          'rgba(220, 28, 19, 0.2)', /* boots */
+          'rgba(220, 28, 19, 0.2)', /* breakfast */
+          'rgba(220, 28, 19, 0.2)', /* bubblegum */
+          'rgba(220, 28, 19, 0.2)', /* chair */
+          'rgba(220, 28, 19, 0.2)', /* cthulhu */
+          'rgba(220, 28, 19, 0.2)' /* dog-duck */
         ],
         borderColor: [
-          'rgba(0, 92, 53, 0.8)', /* bag */
-          'rgba(0, 85, 92, 0.8)', /* banana */
-          'rgba(0, 63,92, 0.8)', /* bathroom */
-          'rgba(68, 78, 134, 0.8)', /* boots */
-          'rgba(149, 81, 150, 0.8)', /* breakfast */
-          'rgba(221, 81, 130, 0.8)', /* bubblegum */
-          'rgba(255, 110, 84, 0.8)', /* chair */
-          'rgba(255, 166, 0, 0.8)', /* cthulhu */
-          'rgba(255, 249, 61, 0.8)' /* dog-duck */
+          'rgba(220, 28, 19, 0.8)', /* bag */
+          'rgba(220, 28, 19, 0.8)', /* banana */
+          'rgba(220, 28, 19, 0.8)', /* bathroom */
+          'rgba(220, 28, 19, 0.8)', /* boots */
+          'rgba(220, 28, 19, 0.8)', /* breakfast */
+          'rgba(220, 28, 19, 0.8)', /* bubblegum */
+          'rgba(220, 28, 19, 0.8)', /* chair */
+          'rgba(220, 28, 19, 0.8)', /* cthulhu */
+          'rgba(220, 28, 19, 0.8)' /* dog-duck */
         ],
         borderWidth: 1
       }]
@@ -162,7 +162,8 @@ function displayScores() {
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
+            stepSize: 1
           }
         }]
       },
